@@ -1,0 +1,19 @@
+<!-- 
+  This template gets placed in the Pet tab's <ion-nav-view> directive.
+  It was wired up in the app config (app.js) 
+  The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
+-->
+<ion-view title="'User Information'">
+  <ion-content has-header="true" has-tabs="true">
+
+    <ion-list>
+
+      <ion-item ng-repeat="user in users" type="item-text-wrap" href="#/tab/user/{{user.username}}">
+        <h3>{{user.username}}</h3>
+        <p>{{user.firstName}} {{user.lastName}}</p>
+      </ion-item>
+      
+    </ion-list>
+
+  </ion-content>
+</ion-view>/

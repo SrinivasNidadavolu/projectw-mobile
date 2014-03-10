@@ -1,8 +1,4 @@
-<!-- 
-  This template gets placed in the Pet tab's <ion-nav-view> directive.
-  It was wired up in the app config (app.js) 
-  The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
--->
+
 <ion-view title="'Follow Users'" right-buttons="rightButtons">
 
   <ion-content has-header="true" has-tabs="true">
@@ -19,10 +15,10 @@
     <ion-list>
 
       <ion-item ng-repeat="user in users | filter:searchText" item-type="item-thumbnail-left" href="#/tab/user/{{user.username}}">
-        <img src="img/ionic.png">
+        <img src="img/profile-placeholder.png">
         <h2>{{user.firstName}} {{user.lastName}}</h2>
         <p ng-show="user.latestIndex">Latest Vitality-Index is {{user.latestIndex.indexValue}}</p>
-        <p ng-hide="user.latestIndex">Latest Vitality-Index is not available</p>
+        <p ng-hide="user.latestIndex">No Data Available</p>
       </ion-item>
       
     </ion-list>

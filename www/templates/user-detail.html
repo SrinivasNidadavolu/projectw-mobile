@@ -11,7 +11,7 @@
     <div class="list card">
       <ion-toggle ng-checked="user.followed" ng-click="toggleFollow()">Follow this user</ion-toggle>
       <div class="item item-avatar">
-        <img src="img/ionic.png">
+        <img src="img/profile-placeholder.png">
         <h2>{{user.firstName}} {{user.lastName}}</h2>
         <p ng-show="user.latestIndex">Latest Vitality Index is {{user.latestIndex.indexValue}}</p>
         <p>
@@ -22,13 +22,30 @@
 
       <div class="item item-body">
         <div class="list">
+          <div class="item item-divider">
+            Information
+          </div>
+          
+          <div class="item">
+            <p>
+              Joined at <b>2014-01-01</b>
+            </p>
+            <p>
+              Last seen at <b>2014-01-01</b>
+            </p>
+          </div>        
 
           <div class="item item-divider">
-            Most recent 5 Vitality-Indexes
+            5 most recent 5 vitality indexes
           </div>
 
-          <a ng-repeat="index in indexes | orderBy:calculated:reverse" class="item item-icon-left item-icon-right" href="#">
-            <i class="icon ion-ios7-heart"></i>
+          <div class="item">
+            <p ng-hide="indexes.length > 0">No Data Available</p>
+          </div>
+
+          <a ng-repeat="index in indexes | orderBy:'-calculated' | limitTo:5" class="item item-icon-left item-icon-right" href="#">
+            <i ng-show="index.indexValue>80" class="icon ion-thumbsup"></i>
+            <i ng-hide="index.indexValue>80" class="icon ion-thumbsdown"></i>
             <p> {{index.indexValue}} by {{index.calculated}}</p>
             <i class="icon ion-ios7-cloud-download-outline"></i>
           </a>

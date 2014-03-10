@@ -64,26 +64,6 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       }
     })
 
-    .state('tab.login', {
-      url: '/login',
-      views: {
-        'home-tab': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
-        }
-      }
-    })
-
-    .state('tab.register', {
-      url: '/register',
-      views: {
-        'home-tab': {
-          templateUrl: 'templates/register.html',
-          controller: 'RegisterCtrl'
-        }
-      }
-    })
-
     .state('tab.profile', {
       url: '/profile',
       views: {
@@ -101,6 +81,52 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
           templateUrl: 'templates/about.html'
         }
       }
+    })
+
+    .state('tab.logout', {
+      url: '/logout',
+      views: {
+        'logout-tab': {
+          templateUrl: 'templates/logout.html',
+          controller: 'LogoutCtrl'
+        }
+      }
+    })
+
+    .state('logintab', {
+      url: "/logintab",
+      abstract: true,
+      templateUrl: "templates/logintab.html"
+    })
+
+    .state('logintab.login', {
+      url: "/login",
+      views: {
+        'login-tab': {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+        }
+      }
+    })
+
+    .state('logintab.register', {
+      url: "/register",
+      views: {
+        'register-tab': {
+          templateUrl: 'templates/register.html',
+          controller: 'RegisterCtrl'
+        }
+      }
+        
+    })
+
+    .state('logintab.about', {
+      url: '/about',
+      views: {
+        'about-tab': {
+          templateUrl: 'templates/about.html'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
@@ -111,9 +137,10 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 .run(function($rootScope, UserService, $state) {
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){
-      if(toState.name != 'tab.register' && toState.name != 'tab.about') {
+      if(toState.name != 'logintab.register' && toState.name != 'logintab.about'
+        && toState.name != 'login.about') {
         UserService.check().then(function(){}, function() {
-          $state.go('tab.login');
+          $state.go('logintab.login');
         });
       }
     });

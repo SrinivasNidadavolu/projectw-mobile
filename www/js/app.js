@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       templateUrl: "templates/tabs.html"
     })
 
-    // the pet tab has its own child nav-view and history
+    // the user tab has its own child nav-view and history
     .state('tab.user-index', {
       url: '/users',
       views: {
@@ -44,11 +44,52 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       }
     })
 
+    .state('tab.search', {
+      url: '/search',
+      views: {
+        'search-tab': {
+          templateUrl: 'templates/search.html',
+          controller: 'SearchCtrl'
+        }
+      }
+    })
+
+    .state('tab.search-user', {
+      url: '/search-user/:username',
+      views: {
+        'search-tab': {
+          templateUrl: 'templates/user-detail.html',
+          controller: 'UserDetailCtrl'
+        }
+      }
+    })
+
+    .state('tab.login', {
+      url: '/login',
+      views: {
+        'home-tab': {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+        }
+      }
+    })
+
     .state('tab.register', {
       url: '/register',
       views: {
-        'register-tab': {
-          templateUrl: 'templates/register.html'
+        'home-tab': {
+          templateUrl: 'templates/register.html',
+          controller: 'RegisterCtrl'
+        }
+      }
+    })
+
+    .state('tab.profile', {
+      url: '/profile',
+      views: {
+        'home-tab': {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
         }
       }
     })
@@ -63,7 +104,18 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/users');
+  $urlRouterProvider.otherwise('/tab/profile');
 
+})
+
+.run(function($rootScope, UserService, $state) {
+  $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+      if(toState.name != 'tab.register' && toState.name != 'tab.about') {
+        UserService.check().then(function(){}, function() {
+          $state.go('tab.login');
+        });
+      }
+    });
 });
 

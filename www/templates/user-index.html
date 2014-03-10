@@ -3,17 +3,29 @@
   It was wired up in the app config (app.js) 
   The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
 -->
-<ion-view title="'User Information'">
+<ion-view title="'Follow Users'" right-buttons="rightButtons">
+
   <ion-content has-header="true" has-tabs="true">
 
+    <div class="list">
+
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="search" ng-model="searchText">
+        </label>
+      </div>
+
+    </div>
     <ion-list>
 
-      <ion-item ng-repeat="user in users" type="item-text-wrap" href="#/tab/user/{{user.username}}">
-        <h3>{{user.username}}</h3>
-        <p>{{user.firstName}} {{user.lastName}}</p>
+      <ion-item ng-repeat="user in users | filter:searchText" item-type="item-thumbnail-left" href="#/tab/user/{{user.username}}">
+        <img src="img/ionic.png">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p ng-show="user.latestIndex">Latest Vitality-Index is {{user.latestIndex.indexValue}}</p>
+        <p ng-hide="user.latestIndex">Latest Vitality-Index is not available</p>
       </ion-item>
       
     </ion-list>
 
   </ion-content>
-</ion-view>/
+</ion-view>

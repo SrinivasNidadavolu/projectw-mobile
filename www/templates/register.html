@@ -1,27 +1,27 @@
 <!--
   This template loads for the 'tab.adopt' state (app.js)
 -->
-<ion-view title="'Register a new User'">
+<ion-view title="'Vitality Tracker v0.1'">
   <ion-content has-header="true" has-tabs="true">
     <div class="list list-inset">
-      <label class="item item-input">
-        <span class="input-label">First name</span>
-        <input type="text">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="John" ng-model="newUser.firstName">
       </label>
-      <label class="item item-input">
-        <span class="input-label">Last name</span>
-        <input type="text">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Last Name</span>
+        <input type="text" placeholder="Suhr" ng-model="newUser.lastName">
       </label>
-      <label class="item item-input">
-        <span class="input-label">Your email</span>
-        <input type="email">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="john@suhr.com" ng-model="newUser.username">
       </label>
-      <label class="item item-input">
+      <label class="item item-input item-stacked-label">
         <span class="input-label">Password</span>
-        <input type="password">
+        <input type="password" placeholder="******" ng-model="newUser.password">
       </label>
-      <ion-toggle>Subscribe To Newsletter</ion-toggle>
-      <button class="button button-positive button-block">Register</button>
+      <button class="button button-block button-balanced" ng-click="signup(newUser)">Create Account</button>
+       <span style="float:right;padding-right:10px">or <a href="#/tab/login">login here</a></span>
     </div>
   </ion-content>
 </ion-view>

@@ -1,0 +1,38 @@
+<ion-view title="'My Profile'">
+  <ion-content has-header="true" padding="true">
+	<div class="list card">
+
+	  <div class="item item-avatar">
+	    <img src="img/ionic.png">
+	    <h2>{{me.firstName}} {{me.lastName}}</h2>
+	    <p ng-show="user.latestIndex">Latest Vitality-Index is {{me.latestIndex.indexValue}}</p>
+	  	<p>
+	      <a href="#" class="subdued">1 Followers</a>
+	      <a href="#" class="subdued">5 Follows</a>
+	    </p>
+	  </div>
+
+	  <div class="item item-body">
+			<div class="list">
+
+			  <div class="item item-divider">
+			    Most recent 5 Vitality-Indexes
+			  </div>
+
+			  <a ng-repeat="index in indexes | orderBy:calculated:reverse" class="item item-icon-left item-icon-right" href="#">
+			  	<i class="icon ion-ios7-heart"></i>
+			    <p> {{index.indexValue}} by {{index.calculated}}</p>
+			    <i class="icon ion-ios7-cloud-download-outline"></i>
+			  </a>
+			</div>
+
+	  </div>
+
+	</div>
+
+	<button class="button button-full button-assertive" ng-click="logout()">
+	  Logout
+	</button>
+  </ion-content>
+
+</ion-view>

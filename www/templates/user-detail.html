@@ -1,12 +1,43 @@
 <!--
-  This template loads for the 'tab.pet-detail' state (app.js)
-  'pet' is a $scope variable created in the PetCtrl controller (controllers.js)
-  The PetCtrl pulls data from the Pets service (service.js)
-  The Pets service returns an array of pet data
+  This template loads for the 'tab.user-detail' state (app.js)
+  'user' is a $scope variable created in the UserCtrl controller (controllers.js)
+  The UserCtrl pulls data from the Users service (service.js)
+  The Users service returns an array of user data
 -->
-<ion-view title="user.username">
+<ion-view title="'User Details'">
+
   <ion-content has-header="true" padding="true">
-    <p>{{user.firstName}} {{user.lastName}}</p>
-    <p><a class="button button-small icon ion-arrow-left-b" href="#/tab/users"> All Users</a></p>
+
+    <div class="list card">
+      <ion-toggle ng-checked="user.followed" ng-click="toggleFollow()">Follow this user</ion-toggle>
+      <div class="item item-avatar">
+        <img src="img/ionic.png">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p ng-show="user.latestIndex">Latest Vitality Index is {{user.latestIndex.indexValue}}</p>
+        <p>
+          <a href="#" class="subdued">1 Followers</a>
+          <a href="#" class="subdued">5 Following</a>
+        </p>
+      </div>
+
+      <div class="item item-body">
+        <div class="list">
+
+          <div class="item item-divider">
+            Most recent 5 Vitality-Indexes
+          </div>
+
+          <a ng-repeat="index in indexes | orderBy:calculated:reverse" class="item item-icon-left item-icon-right" href="#">
+            <i class="icon ion-ios7-heart"></i>
+            <p> {{index.indexValue}} by {{index.calculated}}</p>
+            <i class="icon ion-ios7-cloud-download-outline"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
   </ion-content>
+
 </ion-view>

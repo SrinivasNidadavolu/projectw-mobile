@@ -1,0 +1,24 @@
+<ion-view title="'Search Other Users'">
+
+  <ion-content has-header="true" has-tabs="true">
+  
+	<div class="list">
+
+	  <div class="item item-input-inset">
+	    <label class="item-input-wrapper">
+	      <input type="text" placeholder="search" ng-model="searchText">
+	    </label>
+	  </div>
+
+	</div>
+
+    <ion-list>
+
+      <ion-item ng-repeat="user in users | filter:searchText | limitTo:20" type="item-text-wrap" href="#/tab/search-user/{{user.username}}">
+        <p>{{user.firstName}} {{user.lastName}}</p>
+      </ion-item>
+      
+    </ion-list>
+
+  </ion-content>
+</ion-view>
